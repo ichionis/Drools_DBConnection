@@ -11,13 +11,19 @@ import java.sql.Statement
 
 
 function String ConnectDB(String ConnectionClass,String url,String user, String password) {
- 
+    //Loading the required JDBC Driver class
     Class.forName(ConnectionClass);
+    
+    //Creating a connection to the database
     java.sql.Connection con = DriverManager.getConnection(url, user, password);
+
+    //Executing SQL query and fetching the result
     Statement st = con.createStatement();
     ResultSet rs = st.executeQuery("select * from Persons");
+
     rs.first();
-  return rs.getString("FirstName");
+    
+    return rs.getString("FirstName");
         
 }
 
